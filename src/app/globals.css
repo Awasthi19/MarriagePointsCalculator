@@ -2,26 +2,869 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+.logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    background: #f4e1c1; /* Soft beige or parchment-like color */
+    padding: 20px;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);/* Subtle shadow for depth */
+    filter: sepia(0.3) contrast(1.2) brightness(0.9); /* Add a sepia tone for vintage feel */
+    background-blend-mode: multiply;
+    background-size: cover;
+    border-bottom: 4px solid black;
+  }
+  
+  .logo Image {
+    width: auto;
+    height: 80px; /* Adjust height as needed */
+    object-fit: contain;
+  }
+      
+  
+
+  .container {
+    position:absolute;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    margin-left: 0px;
+    overflow: auto;
+  }
+  
+  .center-content {
+    text-align: center;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  button {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button.start-game-btn {
+    background-color: #4caf50;
+    color: white;
+    margin: auto;
+  }
+  
+  button.start-game-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  button.reset-btn {
+    background-color: #ff4d4d;
+    color: white;
+    margin: auto;
+  }
+  
+  button.reset-btn:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+  }
+  
+  
+  .plus-icon {
+    font-size: 50px;
+    color: #4caf50;
+    cursor: pointer;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #202020;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    width: 90vw;  /* Default width for larger screens */
+    max-width: 600px;
+    height: 100vh;
+    overflow: auto;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (max-width: 768px) {
+    .modal {
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        transform: none;
+        border-radius: 0;
+    }
+}
+
+  
+  .settings {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .settings label {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    padding: 5px;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+
+  }
+  
+  .settings input {
+    background-color: #292929;
+    color: #f0f0f0;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    width: 100px;
+  }
+  
+  .toggle input {
+    width: auto;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    overflow: scroll;
+
+  }
+  
+  /* Player Form Container */
+.player-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #202020;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Header with buttons */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+    color: #f0f0f0;
+  }
+  
+  .back-button, .home-button {
+    background-color: transparent;
+    color: #f0f0f0;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  /* Settings Styles */
+  .settings {
+    background-color: #1e1e1e;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    
+}
+
+.settings label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 0;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1rem;
+    color: #e0e0e0;
+}
+
+
+
+.settings input[type="number"] {
+    background-color: #333;
+    color: #f0f0f0;
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 8px;
+    width: 120px;
+    transition: border-color 0.3s ease;
+}
+
+.settings input[type="number"]:focus {
+    outline: none;
+    border-color: #66b2ff;
+}
+
+.settings input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+  
+  /* Toggle Specific Input */
+  .toggle input {
+    width: auto;
+  }
+  
+  /* Players List */
+  .players-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .player-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .player-input label {
+    width: 80px;
+    font-weight: bold;
+    color: #f0f0f0;
+  }
+  
+  .player-input input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #292929;
+    color: #f0f0f0;
+  }
+  
+  /* Delete Button for Players */
+  .delete-button {
+    background-color: #ff4d4d;
+    color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .delete-button:hover {
+    background-color: #ff6666;
+  }
+  
+  /* Modal Actions (Footer) */
+  .modal-actions, .footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Buttons */
+  .clear-button, .start-button, .end-game-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #f0f0f0;
+  }
+  
+  .clear-button {
+    background-color: #ff4d4d;
+  }
+  
+  .clear-button:hover {
+    background-color: #ff6666;
+  }
+  
+  .start-button {
+    background-color: #4caf50;
+  }
+  
+  .start-button:hover {
+    background-color: #66bb6a;
+  }
+  
+  .end-game-button {
+    background-color: #ff4d4d;
+  }
+  
+  .end-game-button:hover {
+    background-color: #ff6666;
+  }
+  
+  /* Note text below the player list */
+  .note {
+    text-align: center;
+    font-size: 12px;
+    color: #b0b0b0;
+    margin-top: 10px;
+  }
+  
+  /* Game UI */
+  .game-ui h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .game-ui ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .game-ui ul li {
+    background-color: #333;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    color: #f0f0f0;
+  }
+
+  /* Calculate Container */
+.calculate-container {
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #202020;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  /* For Webkit browsers (Chrome, Safari) */
+
+  
+  /* Header with buttons */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+    color: #f0f0f0;
+  }
+  
+  .back-button, .home-button {
+    background-color: transparent;
+    color: #f0f0f0;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  /* Game Info */
+  .game-info {
+    margin-bottom: 20px;
+    color: #f0f0f0;
+  }
+  
+  .game-info h2 {
+    font-size: 20px;
+  }
+  
+  .game-info p {
+    font-size: 14px;
+  }
+  
+  /* Winner Selection */
+  .winner-selection {
+    margin-bottom: 20px;
+  }
+  
+  .winner-selection label {
+    display: block;
+    color: #f0f0f0;
+    margin-bottom: 5px;
+  }
+  
+  .winner-selection select {
+    background-color: #292929;
+    color: #f0f0f0;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    width: 100%;
+  }
+  
+  /* Players Points List */
+  .players-points-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .player-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #292929;
+    border-radius: 5px;
+    color: #f0f0f0;
+  }
+  
+  .player-number {
+    width: 40px;
+    text-align: center;
+  }
+  
+  .set-winner-button {
+    background-color: transparent;
+    color: #4caf50;
+    border: 2px solid #4caf50;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: small;
+  }
+  
+  .set-winner-button.selected {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  .maal-points-input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    background-color: #3a3939;
+    color: #f0f0f0;
+    width: 80px;
+  }
+  
+  .player-status {
+    background-color: #292929;
+    color: #f0f0f0;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    width: 80px;
+  }
+  
+  /* Info Notes */
+  .info-notes {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #b0b0b0;
+    text-align: center;
+  }
+  
+  /* Footer */
+  .footer {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    gap:10px;
+    margin-top: 20px;
+    position: fixed;
+    bottom: 0;      /* Stick to the bottom of the viewport */
+    left: 0;        /* Align to the left edge */
+    width: 100%; 
+    padding: 10px 0; /* Optional padding */
+    z-index: 1000;
+
+  }
+  
+  /* Buttons */
+  .calculate-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #f0f0f0;
+    background-color: #4caf50;
+  }
+  
+  .calculate-button:hover {
+    background-color: #66bb6a;
+  }
+
+  .billing-container {
+    border: 1px solid #444;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #1a1a1a; /* Match the menu container background */
+    padding: 5px;
+    border-radius: 10px; /* Match the menu container border radius */
+    color: #ccc; /* Light text color */
+    width: 100%;
+    max-width: 1400px;
+    box-sizing: border-box;
+    gap: 1rem;
+    justify-content: start;
+    display: flex; /* Align items horizontally */
+    flex-wrap: wrap; /* Ensure items wrap on smaller screens */
+    overflow: auto;
+}
+
+
+.billing-container .customer-info{
+    flex: 0.5;
+    min-width: 280px; /* Ensure columns have a minimum width */
+    margin-bottom: 1rem; /* Add spacing between rows on wrap */
+}
+.billing-container .charge-section{
+    flex: 1;
+    min-width: 280px; /* Ensure columns have a minimum width */
+    margin-bottom: 1rem; /* Add spacing between rows on wrap */
+}
+
+.billing-container .payment-summary {
+    flex: 2;
+    min-width: 280px; /* Ensure columns have a minimum width */
+    margin-bottom: 1rem; /* Add spacing between rows on wrap */
+}
+
+.billing-container .customer-info {
+    padding-right: 2rem;
+}
+
+.billing-container label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.billing-container input,
+.billing-container select {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #292929;
+    color: #f0f0f0;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.billing-container input:focus,
+.billing-container select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #15ad66, 0 0 0 4px rgba(63, 81, 181, 0.2);
+}
+
+
+
+.billing-container button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+.billing-container p {
+    margin-bottom: 1rem;
+    
+}
+
+.billing-container .payment-mode {
+    display: flex;
+    gap: 1rem;
+}
+
+.statement-result {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #202020;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  width: 90vw;  /* Default width for larger screens */
+  max-width: 600px;
+  height: 100vh;
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .statement-result {
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      transform: none;
+      border-radius: 0;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.billing-container table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #1a1a1a;
+  color: #ccc;
+  margin-bottom: 2rem;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.billing-container th,
+.billing-container td {
+  padding: 12px;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  border: none;
 }
+
+.billing-container th {
+  background-color: transparent;
+  color: #15ad66;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.billing-container td {
+  font-size: 1rem;
+  background-color: transparent;
+}
+
+.billing-container tr:nth-child(even) {
+  background-color: #262626;
+}
+
+.billing-container tr:hover {
+  background-color: #4e2222;
+}
+
+.billing-container td a {
+  color: #15ad66;
+  text-decoration: none;
+}
+
+.billing-container td a:hover {
+  text-decoration: underline;
+}
+
+.statement-result .total-row {
+  font-weight: bold;
+  color: #ff0066;
+  font-size: 1.1rem;
+  text-align: right;
+  padding-top: 20px;
+}
+
+
+.button-log {
+  padding: 0.75rem 1.5rem; /* Padding for the button */
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  background: linear-gradient(135deg, #00a838, #af0202); /* Gradient background */
+  border: none;
+  border-radius: 30px; /* Rounded corners */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth transition on hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.button-log:hover {
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+  background: linear-gradient(135deg, #2575fc, #6a11cb); /* Inverse gradient on hover */
+}
+
+.button-log:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.5); /* Focus ring */
+}
+
+.checkboxgroup{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+
+}
+
+.checkboxlabel {
+  background-color: #444;
+  cursor: pointer;
+  width:60px;
+  height:30px;
+  border-radius: 60px;
+  position :relative;
+  transition: 0.2s;
+
+}
+
+.checkboxlabel::before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+}
+
+input:checked + .checkboxlabel {
+  background-color: #4caf50;
+}
+
+input:checked + .checkboxlabel::before {
+  transform: translateX(30px);
+}
+
+.checkbox-input {
+  display: none;
+}
+
+
+.gsi-material-button {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-appearance: none;
+  background-color: WHITE;
+  background-image: none;
+  border: 1px solid #747775;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #1f1f1f;
+  cursor: pointer;
+  font-family: 'Roboto', arial, sans-serif;
+  font-size: 14px;
+  height: 40px;
+  letter-spacing: 0.25px;
+  outline: none;
+  overflow: hidden;
+  padding: 0 12px;
+  position: relative;
+  text-align: center;
+  -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
+  transition: background-color .218s, border-color .218s, box-shadow .218s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+  max-width: 400px;
+  min-width: min-content;
+}
+
+.gsi-material-button .gsi-material-button-icon {
+  height: 20px;
+  margin-right: 12px;
+  min-width: 20px;
+  width: 20px;
+}
+
+.gsi-material-button .gsi-material-button-content-wrapper {
+  -webkit-align-items: center;
+  align-items: center;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  height: 100%;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.gsi-material-button .gsi-material-button-contents {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  font-family: 'Roboto', arial, sans-serif;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+}
+
+.gsi-material-button .gsi-material-button-state {
+  -webkit-transition: opacity .218s;
+  transition: opacity .218s;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.gsi-material-button:disabled {
+  cursor: default;
+  background-color: #ffffff61;
+  border-color: #1f1f1f1f;
+}
+
+.gsi-material-button:disabled .gsi-material-button-contents {
+  opacity: 38%;
+}
+
+.gsi-material-button:disabled .gsi-material-button-icon {
+  opacity: 38%;
+}
+
+.gsi-material-button:not(:disabled):active .gsi-material-button-state, 
+.gsi-material-button:not(:disabled):focus .gsi-material-button-state {
+  background-color: #303030;
+  opacity: 12%;
+}
+
+.gsi-material-button:not(:disabled):hover {
+  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+}
+
+.gsi-material-button:not(:disabled):hover .gsi-material-button-state {
+  background-color: #303030;
+  opacity: 8%;
+}
+
+.outer-div {
+  position : absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px; /* Adjust gap between elements */
+  min-height: auto; /* Ensures full-screen height */
+  padding: 20px;
+  overflow: auto;
+  top:230px;
+}
+
