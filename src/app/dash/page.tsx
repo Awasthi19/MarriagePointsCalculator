@@ -21,7 +21,7 @@ const GameUI = () => {
 
     const fetchGameName = async () => {
       try {
-        const response = await axios.post("http://localhost:3000/api/gamenames");
+        const response = await axios.post("/api/gamenames");
         
         // Map through the response data and extract only the gameName
         const gameNamesArray = response.data.map((game: { gameName: string }) => game.gameName);
@@ -175,7 +175,7 @@ const GameUI = () => {
     setGameNumber(gameNumber + 1);
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/maalcalc",
+        "/api/maalcalc",
         {
           players, // Pass players data
           settings, // Pass settings data
@@ -207,7 +207,7 @@ const GameUI = () => {
       setShowModal(!showModal);
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/newgame",
+          "/api/newgame",
           { headers: { "Content-Type": "application/json" } }
         );
         console.log(response.data);
