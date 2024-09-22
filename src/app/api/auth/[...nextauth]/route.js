@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import axios from "axios";
 import { connectDB } from '@/lib/mongodb';
 import User from '@/modals/user';
 
@@ -24,22 +23,15 @@ const authOptions = {
             return true;
           }
 
-          const response = await axios.post("/api/user", {
+          // Create a new user if they don't exist
+          const newUser = new User({
             email: user.email,
             name: user.name,
-          }, {
-            headers: {
-              "Content-Type": "application/json",
-            },
           });
 
-          console.log("response", response);
+          await newUser.save(); // Save the new user to the database
 
-          if (response.status === 201) {
-            return true;
-          }
-          
-          return false;
+          return true; // Allow sign-in after user is created
         } catch (error) {
           console.error("Error creating user:", error);
           return false;
