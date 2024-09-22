@@ -24,7 +24,7 @@ const authOptions = {
             return true;
           }
 
-          const response = await axios.post("http://localhost:3000/api/user", {
+          const response = await axios.post("/api/user", {
             email: user.email,
             name: user.name,
           }, {
